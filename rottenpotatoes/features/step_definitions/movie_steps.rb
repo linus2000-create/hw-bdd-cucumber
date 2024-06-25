@@ -5,7 +5,7 @@ Given /the following movies exist/ do |movies_table|
   end
 end
 
-Then /(.*) seed movies should exist/ do | n_seeds |
+Then /(.*) seed movies should exist/ do |n_seeds|
   expect(Movie.count).to eq n_seeds.to_i
 end
 
@@ -31,4 +31,17 @@ end
 Then /I should see all the movies/ do
   rows = page.all('table#movies tbody tr').size
   expect(rows).to eq Movie.count
+end
+
+# Additional steps to support filtering and checking movie visibility
+Then /I should see the following movies: (.*)/ do |movie_list|
+  movie_list.split(', ').each do |movie|
+    expect(page).to have_content(movie)
+  end
+end
+
+Then /I should not see the following movies: (.*)/ do |movie_list|
+  movie_list.split(', ').each do |movie|
+    expect(page).not_to have_content(movie)
+  end
 end
