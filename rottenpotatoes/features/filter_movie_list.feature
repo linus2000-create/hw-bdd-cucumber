@@ -18,35 +18,37 @@ Background: movies have been added to database
     | The Incredibles         | PG     | 5-Nov-2004   |
     | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
     | Chicken Run             | G      | 21-Jun-2000  |
-
-  And I am on the RottenPotatoes home page
-  Then 10 seed movies should exist
+    And I am on the RottenPotatoes home page
+    Then 10 seed movies should exist
 
 Scenario: restrict to movies with 'PG' or 'R' ratings
   When I check the following ratings: PG, R
   And I uncheck the following ratings: G, PG-13
   And I press "Refresh"
-  Then I should see "The Terminator"
-  And I should see "When Harry Met Sally"
-  And I should see "Amelie"
-  And I should see "The Incredibles"
-  And I should see "Raiders of the Lost Ark"
-  And I should not see "Aladdin"
-  And I should not see "2001: A Space Odyssey"
-  And I should not see "Chicken Run"
-  And I should not see "The Help"
-  And I should not see "Chocolat"
+  Then I should see the following movies:
+    | The Terminator          |
+    | When Harry Met Sally    |
+    | Amelie                  |
+    | The Incredibles         |
+    | Raiders of the Lost Ark |
+  And I should not see the following movies:
+    | Aladdin                 |
+    | 2001: A Space Odyssey   |
+    | Chicken Run             |
+    | The Help                |
+    | Chocolat                |
 
 Scenario: all ratings selected
   When I check the following ratings: G, PG, PG-13, R
   And I press "Refresh"
-  Then I should see "Aladdin"
-  And I should see "The Terminator"
-  And I should see "When Harry Met Sally"
-  And I should see "The Help"
-  And I should see "Chocolat"
-  And I should see "Amelie"
-  And I should see "2001: A Space Odyssey"
-  And I should see "The Incredibles"
-  And I should see "Raiders of the Lost Ark"
-  And I should see "Chicken Run"
+  Then I should see the following movies:
+    | Aladdin                 |
+    | The Terminator          |
+    | When Harry Met Sally    |
+    | The Help                |
+    | Chocolat                |
+    | Amelie                  |
+    | 2001: A Space Odyssey   |
+    | The Incredibles         |
+    | Raiders of the Lost Ark |
+    | Chicken Run             |
