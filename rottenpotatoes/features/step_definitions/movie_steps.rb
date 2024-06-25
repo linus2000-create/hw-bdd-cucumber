@@ -28,8 +28,9 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
 end
 
 Then /I should see all the movies/ do
-  rows = page.all('table#movies tbody tr').size
-  expect(rows).to eq Movie.count
+  Movie.all.each do |movie|
+    expect(page).to have_content(movie.title)
+  end
 end
 
 # Additional steps to support filtering and checking movie visibility
