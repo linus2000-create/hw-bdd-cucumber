@@ -11,7 +11,8 @@ end
 
 # Make sure that one string (regexp) occurs before or after another one on the same page
 Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
-  page.body.should =~ /#{Regexp.escape(e1)}.*#{Regexp.escape(e2)}/m
+  regexp = /#{Regexp.escape(e1)}.*#{Regexp.escape(e2)}/m
+  expect(page.body).to match(regexp)
 end
 
 # Make it easier to express checking or unchecking several boxes at once
