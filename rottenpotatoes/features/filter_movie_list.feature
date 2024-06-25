@@ -18,8 +18,8 @@ Background: movies have been added to database
     | The Incredibles         | PG     | 5-Nov-2004   |
     | Raiders of the Lost Ark | PG     | 12-Jun-1981  |
     | Chicken Run             | G      | 21-Jun-2000  |
-    And I am on the RottenPotatoes home page
-    Then 10 seed movies should exist
+  And I am on the RottenPotatoes home page
+  Then 10 seed movies should exist
 
 Scenario: restrict to movies with 'PG' or 'R' ratings
   When I check the following ratings: PG, R
